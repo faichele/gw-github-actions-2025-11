@@ -8,8 +8,10 @@ jobs:
     strategy:
       matrix:
         property_1: ['a', 'b', 'c']
+        property_2: ['1', '2', '3']
     steps:
       - name: Echo hello world
-        run: echo "Hello, world $PROPERTY_1"
+        run: echo "Hello, world $PROPERTY_1 $PRROPERTY2"
         env:
             PROPERTY1: ${{ matrix.property_1 }}
+            PROPERTY2: ${{ matrix.property_2 }}
