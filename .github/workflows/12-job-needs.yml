@@ -1,0 +1,17 @@
+name: 12-job-needs
+on:
+  push:
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: echo "Build step"
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - run: echo "Deploy step"
+      
