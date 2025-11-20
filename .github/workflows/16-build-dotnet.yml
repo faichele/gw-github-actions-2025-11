@@ -5,6 +5,11 @@ on:
 jobs:    
   build:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:8
+        ports:
+          - 27017:27017
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
