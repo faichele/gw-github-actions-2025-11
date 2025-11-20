@@ -15,5 +15,7 @@ jobs:
         run: dotnet restore messages/src/Messages.csproj
       - name: Build
         run: dotnet build --no-restore messages/src/Messages.csproj
+      - name: test
+        run: dotnet test --no-restore messages/src/Messages.csproj
       - name: Publish
         run: dotnet publish -c release -o out messages/src/Messages.csproj
