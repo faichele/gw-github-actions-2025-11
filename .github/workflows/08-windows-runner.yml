@@ -1,0 +1,11 @@
+name: 08-windows-runner
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Echo output
+        run: echo "Hello world!"
+        shell: pwsh

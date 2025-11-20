@@ -1,0 +1,15 @@
+name: 09-strategy-single
+on:
+  push:
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        property_1: ['a', 'b', 'c']
+    steps:
+      - name: Echo hello world
+        run: echo "Hello, world $PROPERTY_1"
+        env:
+            PROPERTY1: ${{ matrix.property_1 }}
