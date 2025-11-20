@@ -5,7 +5,13 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: gw-message-demo
-jobs:    
+permissions:
+  packages: write
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.actor }}
   build:
     runs-on: ubuntu-latest
     services:
@@ -37,7 +43,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}
           tags: |
             type=sha
             type=raw,value=v1.0.0
