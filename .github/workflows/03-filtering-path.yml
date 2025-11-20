@@ -1,4 +1,4 @@
-name: 01-hello-world
+name: 03-filtering-path
 on:
   push:
     paths:
