@@ -7,7 +7,9 @@
     <AssemblyName>Messages</AssemblyName>
     <RootNamespace>FP.ContainerTraining.Messages</RootNamespace>
   </PropertyGroup>
-
+  <propertygroup>
+    <restorepackageswithlockfile>true</restorepackageswithlockfile>
+  </propertygroup>
   
   <ItemGroup>
     <PackageReference Include="MudBlazor" Version="6.*" />

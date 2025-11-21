@@ -1,0 +1,33 @@
+name: 21-cache-lockfile
+on:
+  push:
+  workflow_dispatch:
+jobs:    
+  build:
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:8
+        ports:
+          - 27017:27017
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache NuGet
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore messages/src/Messages.csproj
+      - name: Build
+        run: dotnet build --no-restore messages/src/Messages.csproj
+      - name: test
+        run: dotnet test --no-restore messages/src/Messages.csproj
+      - name: Publish
+        run: dotnet publish -c release -o out messages/src/Messages.csproj
